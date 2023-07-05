@@ -26,7 +26,7 @@ class Solution {
     bool checkpalindrome(string a)
     {
         int s = 0;
-        int e = a.size() - 1;
+        int e = a.length()-1;
         while(s<=e)
         {
             if(a[s]!=a[e])
@@ -45,15 +45,15 @@ public:
     bool isPalindrome(string s) {
         
         string temp = "";
-        for(int j=0; j<s.size(); j++)
+        for(int j=0; j<s.length(); j++)
         {
             if(valid(s[j])){
 
-            temp.push_back(s[j]);
+               temp.push_back(s[j]);
 
             }
         }
-        for(int j=0; j<s.size(); j++)
+        for(int j=0; j<temp.length(); j++)
         {
             temp[j]=tolowercase(temp[j]);
         }
