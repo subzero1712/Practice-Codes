@@ -9,6 +9,7 @@ int main()
     cout<<"enter row and column"<<endl;
     cin>>row>>col;
     int c[col];
+    //here we  are making variable column size
     cout<<"enter column array "<<endl;;
      for(int i=0;i<col;i++){
          cin>>c[i];
@@ -18,6 +19,7 @@ int main()
   int ** a=new int *[row];
   
   for(int i=0;i<row;i++){
+      //means ith row mn ith column size jayega jaisa humne input diya hoga
          a[i]=new int [c[i]];
      }
      cout<<"enter array element "<<endl;
