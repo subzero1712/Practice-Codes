@@ -28,6 +28,13 @@ int main()
         cin>>arr[i];
     }
     int ans = isSorted(arr,n);
-    cout<<ans;
+    if(ans)
+    {
+        cout<<"the array is sorted "<<endl;
+    }
+    else
+    {
+        cout<<"the array is not sorted "<<endl;
+    }
     
 }
