@@ -1,8 +1,18 @@
 #include <iostream>
 
 using namespace std;
+void print(int arr[], int s, int e)
+{
+    for(int i=s;i<=e;i++)
+    {
+        cout<<arr[i]<<" ";
+    }
+    cout<<endl;
+}
 int binarysearch(int arr[],int s,int e,int k)
 {
+    cout<<endl;
+    print(arr,s,e);
     if(s>e)
     {
         return false;
