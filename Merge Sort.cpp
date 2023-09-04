@@ -43,7 +43,8 @@ void merge(int arr[],int s,int e)
     {
         arr[mainarray++]=second[index2++];
     }
-    
+    delete []first;
+    delete []second;
     
 }
 void mergesort(int arr[], int s, int e)
@@ -64,7 +65,6 @@ int main()
 {
     int arr[5]={8,6,4,90,432};
     mergesort(arr,0,4);
-    merge(arr,0,4);
     for(int i=0;i<5;i++)
     {
         cout<<arr[i]<<" ";
