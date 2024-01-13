@@ -10,6 +10,9 @@ class hero{
         cout<<"the health is "<<this->health<<endl;
         cout<<"the level is "<<this->level<<endl;
     }
+    hero(hero& temp){                            //this is how copy constructor are made in the class
+        cout<<"copy constructor callec"<<endl;
+    }
     hero(int health)
     {
         cout<<"constructor called"<<endl;
