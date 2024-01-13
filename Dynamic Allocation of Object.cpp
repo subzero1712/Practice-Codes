@@ -21,7 +21,7 @@ class hero{
 int main()
 {
     hero obj1;
-    hero *obj2 = new hero;
+    hero *obj2 = new hero;  //here if there is parameterised constructor then we can write it as hero *obj2 = new hero(10)
     obj2->setHealth(10);
     cout<<"the health is: "<<obj2->getHealth()<<endl;
     (*obj2).setHealth(20);
