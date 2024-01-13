@@ -48,7 +48,7 @@ int main()
     hero obj1;
     obj1.setHealth(10);   //constructor called
     obj1.setLevel('A');
-    char name[10]="palak";
+    char name[10]="palak";  //if we will change anything in array of obj1 then it will automatically change in obj2 as it is passing the memory adress this is shallow copy
     obj1.setName(name);
     hero obj2(obj1);
     obj1.print();
