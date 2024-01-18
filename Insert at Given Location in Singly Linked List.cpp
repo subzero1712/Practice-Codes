@@ -31,7 +31,7 @@ void print(node* &head)
     }
 }
 
-void insertatposition(node* &head,int position, int d)
+void insertatposition(node* &tail, node* &head,int position, int d)
 {
     if(position == 1)
     {
@@ -68,6 +68,6 @@ int main()
     insertattail(tail, n);
     print(head);
     }
-    insertatposition(head,2,5);
+    insertatposition(tail,head,2,5);
     print(head);
 }
