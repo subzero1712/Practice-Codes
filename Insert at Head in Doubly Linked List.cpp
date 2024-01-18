@@ -40,21 +40,37 @@ int getlength(node* &head)
     return len;
 }
 
-void inserthead(node* &head, int d)
+void inserthead(node* &tail,node* &head, int d)
 {
-    node* temp=new node(d);
-    temp->next=head;
-    head->prev=temp;
-    head = temp;
-    head->prev=NULL;
+    if(head==NULL)
+    {
+        node* temp=new node(d);
+        head=temp;
+        tail=temp;
+    }
+    else{
+        node* temp=new node(d);
+        temp->next=head;
+        head->prev=temp;
+        head = temp;
+        head->prev=NULL;
+    }
 }
 
 void inserttail(node* &tail, int d)
 {
-    node* temp=new node(d);
-    tail->next=temp;
-    temp->prev=tail;
-    tail=temp;
+    if(tail==NULL)
+    {
+        node* temp=new node(d);
+        tail=temp;
+        head=temp;
+    }
+    else{
+        node* temp=new node(d);
+        tail->next=temp;
+        temp->prev=tail;
+        tail=temp;
+    }
 }
 int main()
 {
