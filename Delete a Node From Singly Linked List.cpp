@@ -3,18 +3,17 @@
 using namespace std;
 class node{
   public:
-  int value;
+  int data;
   node *next;
   
   node(int data)
   {
-      this->value=data;
+      this->data=data;
       this->next=NULL;
   }
-
   ~node()
   {
-      int value = this->value;
+      int value = this->data;
       if(this->next!=NULL)
       {
           delete next;
@@ -26,14 +25,18 @@ class node{
 
 void print(node* &head)
 {
+    if(head==NULL)
+    {
+        cout<<"empty LL "<<endl;
+    }
     node* temp = head;
     while(temp!=NULL)
     {
-        cout<<temp->value<<endl;
+        cout<<temp->data<<" ";
         temp=temp->next;
     }
+    cout<<endl;
 }
-
 void insertathead(node* &head, int d)
 {
     node* temp = new node(d);
@@ -41,7 +44,6 @@ void insertathead(node* &head, int d)
     head=temp;
     
 }
-
 void insertattail(node* &tail, int d)
 {
     node *temp = new node(d);
@@ -49,9 +51,13 @@ void insertattail(node* &tail, int d)
     tail = tail->next;
     
 }
-
 void insertatposition(node* tail,node* &head,int position, int d)
 {
+    if(position==1)
+    {
+        insertathead(head,d);
+        return;
+    }
     node* temp=head;
     
     int count=1;
@@ -60,11 +66,15 @@ void insertatposition(node* tail,node* &head,int position, int d)
         temp=temp->next;
         count++;
     }
+    if(temp->next==NULL)
+    {
+        insertattail(tail,d);
+        return;
+    }
     node *nodetoinsert = new node(d);
     nodetoinsert->next=temp->next;
     temp->next=nodetoinsert;
 }
-
 void deletenode(node* &head, int position)
 {
     if(position==1)
@@ -75,10 +85,10 @@ void deletenode(node* &head, int position)
         delete temp;
     }
     else{
-        int cnt=0;
+        int cnt=1;
         node* curr=head;
         node* prev=NULL;
-        for(int i=0;i<=position-1;i++)
+        while(cnt<position)
         {
             prev=curr;
             curr=curr->next;
@@ -89,17 +99,24 @@ void deletenode(node* &head, int position)
         delete curr;
     }
 }
-
 int main()
 {
     node* node1 = new node(10);
     node *head=node1;
     node *tail=node1;
+    //print(head);
     insertattail(tail,12);
-    insertatposition(tail,head,2,22);
+    //print(head);
+    insertattail(tail,15);
+    //print(head);
+    insertatposition(tail,head,4,22);
     print(head);
-    cout<<" head "<<head->value<<endl;
-    cout<<" tail "<<tail->value<<endl;
-    deletenode(head,1);
+    cout<<" head "<<head->data<<endl;
+    cout<<" tail "<<tail->data<<endl;
+    deletenode(head,4);
     print(head);
+    cout<<" head "<<head->data<<endl;
+    cout<<" tail "<<tail->data<<endl;
+   
 }
+
