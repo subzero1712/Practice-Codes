@@ -46,6 +46,11 @@ void insertatposition(node* &head,int position, int d)
         temp=temp->next;
         count++;
     }
+    if(temp->next==NULL){
+      insertattail(tail,d);
+      return;
+    }
+  
     node *nodetoinsert = new node(d);
     nodetoinsert->next=temp->next;
     temp->next=nodetoinsert;
