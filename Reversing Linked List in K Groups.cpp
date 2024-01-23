@@ -1,23 +1,31 @@
 Node* kReverse(Node* head, int k) {
-    if(head == nullptr)
-    {
-        return nullptr;
+    if(head==NULL){
+        return NULL;
     }
-    Node* next;
-    Node* curr = head;
-    Node* prev = nullptr;
-
+    Node* prev=NULL;
+    Node* forward=NULL;
+    Node* curr=head;
+    int counter=0;
+    Node* temp=head;
+    while(temp){
+        temp=temp->next;
+        counter++;
+    }
     int count=0;
-    while(curr != nullptr && count < k)
-    {
-        next = curr->next;
-        curr->next = prev;
-        prev = curr;
-        curr = next;
+    if(k>counter){
+        return head;
+    }
+    
+    while(curr && count<k){
+        forward=curr->next;
+        curr->next=prev;
+        prev=curr;
+        curr=forward;
         count++;
     }
-    if(next != nullptr){   
-        head->next = kReverse(next,k);     
+    
+    if(forward){
+        head->next=kReverse(forward,k);
     }
     return prev;
 }
