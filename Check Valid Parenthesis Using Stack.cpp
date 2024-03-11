@@ -13,7 +13,7 @@ bool isValidParenthesis(string s)
             if (!st.empty()) {
               char top = st.top();
               if ((ch == ')' && top == '(') || (ch == '}' && top == '{') ||
-                  (ch == ']' || top == '[')) {
+                  (ch == ']' && top == '[')) {
                 st.pop();
               }
                else {
