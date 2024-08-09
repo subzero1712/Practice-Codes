@@ -1,6 +1,6 @@
 #include <iostream>
 using namespace std;
-bool palindrome(char arr[], int n, int i){
+bool palindrome(string &arr, int n, int i){
     if(i>=n/2){
         return true;
     }
@@ -14,9 +14,6 @@ int main()
     int n;
     cout<<"enter size of array"<<endl;
     cin>>n;
-    char arr[n];
-    for(int i=0;i<n;i++){
-        cin>>arr[i];
-    }
-    cout<<"checking for palindrome: "<<palindrome(arr, n, 0);
+    string s = "madom";
+    cout<<"checking for palindrome: "<<palindrome(s, n, 0);
 }
