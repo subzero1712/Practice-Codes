@@ -20,7 +20,7 @@ int printS(int ind, int s, int sum, int arr[], int n){
   
   //this will send the sum to the previous step and addition/counting will continue till it reaches to the top of the recursive tree and all that sum will be returned as count
   return l + r;
-
+  //everytime l and r will change according to the branch
 }
 int main(){
   int arr[] = {1,2,1,1};
