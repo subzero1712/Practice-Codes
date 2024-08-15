@@ -6,6 +6,9 @@ void print(int ind, vector<int> &ds, int arr[], int n){
         for(auto it : ds){
             cout<<it<<" ";
         }
+        if(ds.size()==0){
+            cout<<"{}";
+        }
         cout<<endl;
         return;
     }
