@@ -1,5 +1,5 @@
 class Solution {
-    void solve(int i, int j, vector<vector<int>> &a, int n, vector<string> &ans, string move, vector<vector<int>> &vis){
+    void solve(int i, int j, vector<vector<int>> &a, int n, vector<string> &ans, string move, vector<vector<int>> &vis, int di[], int dj[]){
         if(i==n-1 &&j==n-1){
             ans.push_back(move);
             return;
@@ -24,7 +24,7 @@ class Solution {
         vector<vector<int>> vis(n,vector<int>(n,0));
         int di[] = {+1, 0, 0, -1};
         int dj[] = {0, -1, 1, 0};
-        if(mat[0][0] == 1) solve(0,0,mat,n,ans,"",vis);
+        if(mat[0][0] == 1) solve(0,0,mat,n,ans,"",vis, di, dj);
         return ans;
     }
 };
