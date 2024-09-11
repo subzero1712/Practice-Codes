@@ -1,4 +1,4 @@
-//Better
+//Optimal
 #include <bits/stdc++.h> 
 vector<int> findArrayIntersection(vector<int> &A, int n, vector<int> &B, int m)
 {
@@ -18,7 +18,7 @@ vector<int> findArrayIntersection(vector<int> &A, int n, vector<int> &B, int m)
     }
     return ans;
 } 
-//Optimized
+//Brute
 #include <bits/stdc++.h> 
 vector<int> findArrayIntersection(vector<int> &A, int n, vector<int> &B, int m)
 {
