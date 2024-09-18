@@ -8,7 +8,7 @@ int longestSubarrayWithSumK(vector<int> a, long long k) {
         if(sum==k){
             maxLen=max(maxLen, i+1);
         }
-        int rem = sum-k;
+        long long rem = sum-k;
         if(preSumMap.find(rem)!=preSumMap.end()){
             int len = i-preSumMap[rem];
             maxLen=max(maxLen,len);
