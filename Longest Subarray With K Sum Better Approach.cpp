@@ -1,3 +1,4 @@
+#include<map>
 int longestSubarrayWithSumK(vector<int> a, long long k) {
     map<long long, int> preSumMap;
     long long sum = 0;
@@ -12,7 +13,8 @@ int longestSubarrayWithSumK(vector<int> a, long long k) {
             int len = i-preSumMap[rem];
             maxLen=max(maxLen,len);
         }
-        preSumMap[sum]=i;
+        if(preSumMap.find(sum) == preSumMap.end()) {
+      preSumMap[sum] = i;}
     }
     return maxLen;
 }
