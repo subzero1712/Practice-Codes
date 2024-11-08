@@ -86,5 +86,47 @@ void mergeTwoSortedArraysWithoutExtraSpace(vector<long long> &arr1, vector<long 
 		if(gap==1) break;
 		gap=(gap/2)+(gap%2);
 	}
-	
 }
+
+//Leetcode solution
+class Solution {
+public:
+    void swapGreater(vector<int>& nums1, vector<int>& nums2, int i, int j) {
+        if (nums1[i] > nums2[j]) {
+            swap(nums1[i], nums2[j]);
+        }
+    }
+    
+    void merge(vector<int>& nums1, int m, vector<int>& nums2, int n) {
+        int len = m + n;
+        
+        // Resize nums1 to hold all elements from both arrays
+        nums1.resize(len);
+        for (int i = 0; i < n; ++i) {
+            nums1[m + i] = nums2[i];
+        }
+        
+        int gap = (len / 2) + (len % 2);
+        while (gap > 0) {
+            int left = 0;
+            int right = left + gap;
+            while (right < len) {
+                // Check if we're in the first part of nums1 only
+                if (left < m && right < m) {
+                    swapGreater(nums1, nums1, left, right);
+                }
+                // Check if we're crossing between nums1 and nums2
+                else if (left < m && right >= m) {
+                    swapGreater(nums1, nums1, left, right);
+                }
+                else { // Both indices are in nums2
+                    swapGreater(nums1, nums1,left,right);
+                }
+                left++; right++;
+		}
+		if(gap==1) break;
+		gap=(gap/2)+(gap%2);
+	}
+	
+     }
+};
