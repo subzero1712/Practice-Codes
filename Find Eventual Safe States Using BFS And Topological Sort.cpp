@@ -1,3 +1,4 @@
+//Using BFS
 class Solution {
     private:
     bool bfs(int node, vector<vector<int>>& adjLs, vector<int> &vis, vector<int> &pathvis, vector<int> &check) {
@@ -42,6 +43,41 @@ public:
                 safe.push_back(i);
             }
         }
+        return safe;
+    }
+};
+//Using Kahn's Algorithm for topological sorting
+class Solution {
+public:
+    vector<int> eventualSafeNodes(vector<vector<int>>& graph) {
+        int v=graph.size();
+        vector<vector<int>> rev(v);
+        vector<int> indegree(v,0);
+        for(int i=0;i<v;i++){
+            for(auto it: graph[i]){
+                rev[it].push_back(i);
+                indegree[i]++;
+            }
+        }
+        queue<int> q;
+        for(int i=0;i<v;i++){
+            if(indegree[i]==0){
+                q.push(i);
+            }
+        }
+        vector<int> safe;
+        while(!q.empty()){
+            int node=q.front();
+            q.pop();
+            safe.push_back(node);
+            for(auto it: rev[node]){
+                indegree[it]--;
+                if(indegree[it]==0){
+                    q.push(it);
+                }
+            }
+        }
+        sort(safe.begin(),safe.end());
         return safe;
     }
 };
