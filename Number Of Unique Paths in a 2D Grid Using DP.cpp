@@ -28,7 +28,7 @@ public:
                 if(i==0 && j==0) dp[0][0]=1;
                 else{
                   //we caannot initialize up and left outside for loop because if the if condition does not satisfy, the variables will reatain the previous value 
-                  //instead of being reinitialized back to 0 and the result will always be wwrong
+                  //instead of being reinitialized back to 0 and the result will always be wrong
                     int up=0;
                     int left=0;
                     if(i>0) up=dp[i-1][j];
