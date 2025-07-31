@@ -66,8 +66,6 @@ public:
             maxf=max(maxf,hash[s[r]-'A']);
             if((r-l+1)-maxf>k){
                 hash[s[l]-'A']--;
-                maxf=0;
-                for(int i=0;i<26;i++) maxf=max(maxf,hash[i]);
                 l++;
             }
             if((r-l+1)-maxf<=k){
