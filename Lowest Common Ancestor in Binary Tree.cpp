@@ -17,7 +17,7 @@ public:
     }
 
     TreeNode* lowestCommonAncestor(TreeNode* root, TreeNode* p, TreeNode* q) {
-        vector<TreeNode*> arr1, arr2; // Correct initialization
+        vector<TreeNode*> arr1, arr2; 
         if (root == NULL) {
             return NULL;
         }
@@ -25,7 +25,7 @@ public:
         getPath(root, arr2, q);
         
         TreeNode* ans = NULL;
-        int n = min(arr1.size(), arr2.size()); // Ensure bounds are respected
+        int n = min(arr1.size(), arr2.size()); 
         for (int i = 0; i < n; i++) {
             if (arr1[i] == arr2[i]) {
                 ans = arr1[i];
