@@ -1,98 +1,118 @@
-#include <iostream>
+//Insert Before The Given Element
+#include <bits/stdc++.h> 
+/************************************************************
 
-using namespace std;
-class node{
+    Following is the linkedList class structure:
+
+    class Node {
     public:
-    int data;
-    node* prev;
-    node* next;
-    
-    node(int d)
-    {
-        this->data=d;
-        this->prev=NULL;
-        this->next=NULL;
-    }
+        int data;
+        Node *next;
+        Node *prev;
+
+        Node(int val) {
+            this->data = val;
+            next = NULL;
+            prev = NULL;
+        }
+        ~Node() {
+            if(next != NULL || prev != NULL){
+                delete next;
+            }
+        }
 };
-void print(node* &head)
-{
-    if(head == NULL)
-    {
-        cout<<"empty list"<<endl;
+
+************************************************************/
+
+Node* insert(int pos, int val, Node *head) {
+    Node* newNode = new Node(val);
+
+    if (pos == 0) {
+        newNode->next = head;
+        if (head != NULL)
+            head->prev = newNode;
+        head = newNode;
+        return head;
     }
-    node* temp=head;
-    while(temp!=NULL)
-    {
-        cout<<temp->data<<" ";
-        temp=temp->next;
+
+    Node* curr = head;
+    int count = 0;
+
+    while (curr != NULL && count < pos) {
+        curr = curr->next;
+        count++;
     }
-    cout<<endl;
-}
-int getlength(node* &head)
-{
-    int len=0;
-    node* temp=head;
-    while(temp!=NULL)
-    {
-        len++;
-        temp=temp->next;
+
+    if (curr != NULL) {
+        Node* before = curr->prev;
+        before->next = newNode;
+        newNode->prev = before;
+        newNode->next = curr;
+        curr->prev = newNode;
+    } 
+
+    else {
+        Node* tail = head;
+        while (tail->next != NULL)
+            tail = tail->next;
+        tail->next = newNode;
+        newNode->prev = tail;
     }
-    return len;
+
+    return head;
 }
 
-void inserthead(node* &head, int d)
-{
-    node* temp=new node(d);
-    temp->next=head;
-    head->prev=temp;
-    head = temp;
-    head->prev=NULL;
-}
+//Insert After Given Element
+#include <bits/stdc++.h> 
+/************************************************************
 
-void inserttail(node* &tail, int d)
-{
-    node* temp=new node(d);
-    tail->next=temp;
-    temp->prev=tail;
-    tail=temp;
-}
+    Following is the linkedList class structure:
 
-void insertposition(node* &tail, node* &head,int position, int d)
-{
-    node* nodetoinsert = new node(d);
-    if(position==1){
-        inserthead(head,d);
-        return;
+    class Node {
+    public:
+        int data;
+        Node *next;
+        Node *prev;
+
+        Node(int val) {
+            this->data = val;
+            next = NULL;
+            prev = NULL;
+        }
+        ~Node() {
+            if(next != NULL || prev != NULL){
+                delete next;
+            }
+        }
+};
+
+************************************************************/
+
+Node* insert(int k, int val, Node *head) {
+    Node* temp=head;
+    Node* newNode=new Node(val);
+    if(k==0){
+        newNode->next=head;
+        head->prev=newNode;
+        newNode->prev=NULL;
+        head=newNode;
     }
-     int cnt=1;
-     node* temp=head;
-     while(cnt<position-1)
-     {
-        temp=temp->next;
-        cnt++;
-     }
-     if(temp->next==NULL)
-     {
-        inserttail(tail,d);
-        return;
-     }
-     nodetoinsert->next=temp->next;
-     (temp->next)->prev=nodetoinsert;
-     temp->next=nodetoinsert;
-     nodetoinsert->prev=temp;
-     
-}
-int main()
-{
-    node* node1= new node(10);
-    node* head=node1;
-    node* tail=node1;
-    print(head);
-    //cout<<getlength(head)<<endl;
-    inserthead(head,11);
-    inserthead(head,45);
-    inserttail(tail,56);
-    print(head);
-    insertposition(tail,head,2,78);
-    print(head);
+    else{
+        for(int i=0;i<k-1;i++){
+            temp=temp->next;
+        }
+        if(temp->next==NULL && temp->prev!=NULL){
+            temp->next=newNode;
+            newNode->prev=temp;
+            newNode->next=NULL;
+        }else{
+            Node* nextNode=temp->next;
+            nextNode->prev=newNode;
+            newNode->next=nextNode;
+            temp->next=newNode;
+            newNode->prev=temp;
+        }
+    }
+    
+    return head;
 }
