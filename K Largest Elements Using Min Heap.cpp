@@ -1,3 +1,4 @@
+//Min Heap
 #include <bits/stdc++.h> 
 vector<int> Klargest(vector<int> &a, int k, int n) {
     priority_queue<int,vector<int>,greater<int>> pq;
@@ -14,4 +15,23 @@ vector<int> Klargest(vector<int> &a, int k, int n) {
         pq.pop();
     }
     return ans;
+}
+
+//Sorting
+#include <bits/stdc++.h> 
+
+vector<int> Klargest(vector<int> &a, int k, int n) {
+
+    sort(a.begin(),a.end());
+
+    vector<int> ans;
+
+    for(int i=n-k;i<n;i++){
+
+        ans.push_back(a[i]);
+
+    }
+
+    return ans;
+
 }
