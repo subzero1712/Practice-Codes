@@ -1,62 +1,65 @@
-class Solution{
-  private:
-    Node* getMid(Node* head ) {
-        Node* slow = head;
-        Node* fast = head -> next;
-        
-        while(fast != NULL && fast-> next != NULL) {
-            fast = fast -> next -> next;
-            slow = slow -> next;
-        }
-        
-        return slow;
-    }
-    Node* reverse(Node* head) {
-        
-        Node* curr = head;
-        Node* prev = NULL;
-        Node* next = NULL;
-        
-        while(curr != NULL) {
-            next = curr -> next;
-            curr -> next = prev;
-            prev = curr;
-            curr = next;
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode() : val(0), next(nullptr) {}
+ *     ListNode(int x) : val(x), next(nullptr) {}
+ *     ListNode(int x, ListNode *next) : val(x), next(next) {}
+ * };
+ */
+class Solution {
+public:
+    ListNode* reverse(ListNode* head){
+        ListNode* front = NULL;
+        ListNode* prev = NULL;
+        ListNode* temp = head;
+
+        while(temp != NULL){
+            front = temp->next;
+            temp->next = prev;
+            prev = temp;
+            temp = front;
         }
         return prev;
     }
-  public:
-    //Function to check whether the list is palindrome.
-    bool isPalindrome(Node *head)
-    {
-        if(head -> next == NULL) {
-            return true;
+    bool isPalindrome(ListNode* head) {
+        //Brute Force
+        stack<int> st;
+        ListNode* temp=head;
+        while(temp!=NULL){
+            st.push(temp->val);
+            temp=temp->next;
         }
-        
-        //step 1 -> find Middle
-        Node* middle = getMid(head);
-        //cout << "Middle " << middle->data << endl;
-        
-        //step2 -> reverse List after Middle
-        Node* temp = middle -> next;
-        middle -> next = reverse(temp);
-        
-        //step3 - Compare both halves
-        Node* head1 = head;
-        Node* head2 = middle -> next;
-        
-        while(head2 != NULL) {
-            if(head2->data != head1->data) {
-                return 0;
+        temp=head;
+        while(temp!=NULL){
+            if(temp->val!=st.top()){
+                return false;
             }
-            head1 = head1 -> next;
-            head2 = head2 -> next;
+            st.pop();
+            temp=temp->next;
         }
-    
-        //step4 - repeat step 2
-        temp = middle -> next;
-        middle -> next = reverse(temp);
-        
+        return true;
+
+        //Optimal Approach
+        ListNode* slow=head;
+        ListNode* fast=head;
+        while(fast->next!=NULL && fast->next->next!=NULL){
+            slow=slow->next;
+            fast=fast->next->next;
+        }
+        ListNode* newHead=reverse(slow->next);
+        ListNode* first=head;
+        ListNode* second=newHead;
+        while(second!=NULL){
+            if(first->val!=second->val){
+                reverse(newHead);
+                return false;
+            }
+            first=first->next;
+            second=second->next;
+        }
+        reverse(newHead);
         return true;
     }
 };
