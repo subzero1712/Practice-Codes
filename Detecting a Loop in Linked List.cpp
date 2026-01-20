@@ -1,22 +1,34 @@
-#include <iostream>
-#include<map>
-using namespace std;
-bool detectLoop(node* head)
-{
-    if(head==NULL)
-    {
-        return false;
-    }
-    map<node*, bool> visited;
-    node* temp=head;
-    while(temp!=NULL)
-    {
-        if(visited[temp]==true)
-        {
-            return true;
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode(int x) : val(x), next(NULL) {}
+ * };
+ */
+class Solution {
+public:
+    bool hasCycle(ListNode *head) {
+        ListNode* slow=head;
+        ListNode* fast=head;
+        while(fast!=NULL && fast->next!=NULL){
+            slow=slow->next;
+            fast=fast->next->next;
+            if(slow==fast){
+                return true;
+            }
         }
-        visited[temp]=true;
-        temp=temp->next;
+        return false;
+
+        // unordered_map<ListNode*,int> mpp;
+        // ListNode* temp=head;
+        // while(temp!=NULL){
+        //     if(mpp.find(temp)!=mpp.end()){
+        //         return true;
+        //     }
+        //     mpp[temp]=1;
+        //     temp=temp->next;
+        // }
+        // return false;
     }
-    return false;
-}
+};
