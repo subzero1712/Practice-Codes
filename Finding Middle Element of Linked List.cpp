@@ -1,53 +1,38 @@
-//1st Approach
-int getlength(Node* head)
-{
-    int len=0;
-    while(head!=NULL)
-    {
-        len++;
-        head=head->next;
-    }
-    return len;
-}
-
-Node *findMiddle(Node *head) {
-    int len=getlength(head);
-    int ans=(len/2);
-
-    Node* temp=head;
-    int cnt=0;
-    while(cnt<ans)
-    {
-        temp=temp->next;
-        cnt++;
-    }
-    return temp;    
-}
-
-//2nd Approach
-Node* getmiddle(Node* head)
-{
-    if(head==NULL || head->next==NULL)
-    {
-        return head;
-    }
-    if(head->next->next==NULL)
-    {
-        return head->next;
-    }
-    Node* fast=head->next;
-    Node* slow=head;
-    while(fast!=NULL)
-    {
-        fast=fast->next;
-        if(fast!=NULL)
-        {
-            fast=fast->next;
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode() : val(0), next(nullptr) {}
+ *     ListNode(int x) : val(x), next(nullptr) {}
+ *     ListNode(int x, ListNode *next) : val(x), next(next) {}
+ * };
+ */
+class Solution {
+public:
+    ListNode* middleNode(ListNode* head) {
+        //Brute Force Approach
+        ListNode* temp=head;
+        int cnt=0;
+        while(temp!=NULL){
+            cnt++;
+            temp=temp->next;
         }
-        slow=slow->next; 
+        int i=0;
+        temp=head;
+        while(i<cnt/2 && temp!=NULL){
+            temp=temp->next;
+            i++;
+        }
+        return temp;
+
+        //Optimal Approach
+        ListNode* slow=head;
+        ListNode* fast=head;
+        while(fast!=NULL && fast->next!=NULL ){
+            slow=slow->next;
+            fast=fast->next->next;
+        }
+        return slow;
     }
-    return slow;
-}
-Node *findMiddle(Node *head) {
-    getmiddle(head); 
-}
+};
