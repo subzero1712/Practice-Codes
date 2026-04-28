@@ -1,6 +1,7 @@
 #include <bits/stdc++.h> 
 string binaryPuzzle(int n)
-{	string res="";
+{	
+	string res="";
 	while(n!=1){
 		if(n%2==1){
 			res+='1';
